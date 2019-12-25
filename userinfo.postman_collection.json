@@ -1,0 +1,110 @@
+{
+	"info": {
+		"_postman_id": "c20385b7-d287-44fe-9d47-2b89a84d4fc2",
+		"name": "百度接口",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "获取小明信息",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f7a48a6b-7556-4f47-b1c8-572aaf4c2da9",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody)",
+							"",
+							"tests[\"协议状态码为200\"] = responseCode.code === 200;",
+							"tests[\"验证code的值\"]=jsonData.code===200;",
+							"tests[\"验证name的值\"]=jsonData.name===\"小明\";",
+							"tests[\"验证id的值\"]=jsonData.id===1;",
+							"tests[\"验证age的值\"]=jsonData.age===18"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/getuser?Userid=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"getuser"
+					],
+					"query": [
+						{
+							"key": "Userid",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "上传文件",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "077527e9-b601-4ea7-8c09-47e7d5004506",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody)\r",
+							"\r",
+							"\r",
+							"tests[\"协议状态码为200\"] = responseCode.code === 200;\r",
+							"\r",
+							"\r",
+							"tests[\"验证业务状态码为200\"]=jsonData.code===200\r",
+							"\r",
+							"\r",
+							"tests[\"验证success的值\"]=jsonData.success===\"成功\""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/Administrator/Desktop/1.txt"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8081/uploadfile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"uploadfile"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
